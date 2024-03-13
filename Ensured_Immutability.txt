@@ -1,0 +1,15 @@
+How i ensured immutability in TaskManager:
+
+in the addTask function the last statement to update new tasks is as follows:
+
+	setTasks([...tasks, newTask]);
+
+This statement ensures that a new array is created using spread syntax and adding the new task instead of mutating the original array when setting the state. 
+
+in the toggleTaskCompletion function to ensure immutability, i updated the tasks array by using map provided with a callback function as its argument to produce a new array called updatedTasks:
+
+	const updatedTasks = tasks.map(task => task.id === taskId ? { ...task, completed: !	task.completed } : task);
+
+the statement above creates a new updated array based on a matching task.id otherwise it returns the task as is in the new array.
+
+
